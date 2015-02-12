@@ -30,7 +30,8 @@ assault.runModule('geoLocate', moduleOptions, function (err, result) {
         console.log('RESULT:');
         console.log(result);
     }
-});```
+});
+```
 
 ## Issues
 - Please use GitHub web (https://github.com/assaultjs/assaultjs/issues). If you have doubts playing with the software label the issue as "question".
