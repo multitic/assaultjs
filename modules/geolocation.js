@@ -28,9 +28,9 @@ var path = require('path'),
         description: 'Geolocate a host (freegeoip.net)',
         options: {
             target: {
-            type: 'ip',
-            description: 'Host to explore',
-            defaultValue: '8.8.8.8'
+                type: 'ip',
+                description: 'Host to explore',
+                defaultValue: '8.8.8.8'
             }
         }
     };
