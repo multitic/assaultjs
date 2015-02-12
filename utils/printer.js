@@ -41,7 +41,6 @@ module.exports.highlight = function (str) {
     process.stdout.write(clc.xterm(202)(str) + '\n');
 };
 
-// TODO: Some beautifull JSON printer
 module.exports.result = function (str) {
     process.stdout.write(clc.xterm(46)(str) + '\n');
 };

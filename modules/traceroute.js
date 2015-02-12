@@ -24,16 +24,16 @@ var path = require('path'),
     traceroute = require('traceroute'),
 
     HELP = {
-		name: path.basename(__filename).slice('.')[0],
+        name: path.basename(__filename).slice('.')[0],
         description : 'Display the route of your packages',
-		options: {
-			target: {
-				type: 'ip',
-				description: 'Host to explore',
-				defaultValue: '8.8.8.8'
-			}
-		}
-	};
+        options: {
+            target: {
+                type: 'ip',
+                description: 'Host to explore',
+                defaultValue: '8.8.8.8'
+            }
+        }
+    };
 
 
 // Public stuff

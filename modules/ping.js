@@ -24,14 +24,14 @@ var path = require('path'),
     ping = require('ping'),
 
     HELP = {
-		name: path.basename(__filename).slice('.')[0],
-		description: 'Ping protocol client',
-		options: {
-			target: {
-				type: 'ip',
-				description: 'Host to explore',
-				defaultValue: '8.8.8.8'
-			}
+        name: path.basename(__filename).slice('.')[0],
+        description: 'Ping protocol client',
+        options: {
+            target: {
+                type: 'ip',
+                description: 'Host to explore',
+                defaultValue: '8.8.8.8'
+            }
 //            timeout: {
 //                type: 'positiveInt',
 //                description: 'Time to wait for a response (s)',
@@ -43,7 +43,7 @@ var path = require('path'),
 //                defaultValue: '0.5'
 //            }
         }
-	};
+    };
 
 
 // Public stuff

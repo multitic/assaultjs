@@ -25,30 +25,30 @@ var path = require('path'),
 
     HELP = {
         name: path.basename(__filename).slice('.')[0],
-            description: 'Ping client (TCP protocol)',
-            options: {
-                target: {
-                    type: 'ip',
-                    description: 'Host to explore',
-                    defaultValue: '46.28.246.123'
-                },
-                port: {
-                    type: 'port',
-                    description: 'Port to scan on chosen IPs',
-                    defaultValue: 80
-                },
-                timeout: {
-                    type: 'positiveInt',
-                    description: 'Time to wait for a response, in ms.',
-                    defaultValue: 5000
-                },
-                attempts: {
-                    type: 'positiveInt',
-                    description: 'Number of tryings',
-                    defaultValue: 3
-                }
+        description: 'Ping client (TCP protocol)',
+        options: {
+            target: {
+                type: 'ip',
+                description: 'Host to explore',
+                defaultValue: '46.28.246.123'
+            },
+            port: {
+                type: 'port',
+                description: 'Port to scan on chosen IPs',
+                defaultValue: 80
+            },
+            timeout: {
+                type: 'positiveInt',
+                description: 'Time to wait for a response, in ms.',
+                defaultValue: 5000
+            },
+            attempts: {
+                type: 'positiveInt',
+                description: 'Number of tryings',
+                defaultValue: 3
             }
-	};
+        }
+    };
 
 
 // Public stuff

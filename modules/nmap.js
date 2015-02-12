@@ -24,9 +24,9 @@ var path = require('path'),
     libnmap = require('node-libnmap'),
 
     HELP = {
-		name: path.basename(__filename).slice('.')[0],
-		description: 'Geolocate a host (freegeoip.net)',
-		options: {
+        name: path.basename(__filename).slice('.')[0],
+        description: 'Geolocate a host (freegeoip.net)',
+        options: {
             targets : {
                 type: 'nmapTargets',
                 description: 'IP address range to explore',
@@ -44,8 +44,8 @@ var path = require('path'),
                 description: 'Path of the nmap binary',
                 defaultValue: '/usr/local/bin/nmap'
             }
-		}
-	};
+        }
+    };
 
 
 // Public stuff

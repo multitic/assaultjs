@@ -24,16 +24,16 @@ var path = require('path'),
     geoip = require('node-freegeoip'),
 
     HELP = {
-		name: path.basename(__filename).slice('.')[0],
-		description: 'Geolocate a host (freegeoip.net)',
-		options: {
-			target: {
-				type: 'ip',
-				description: 'Host to explore',
-				defaultValue: '8.8.8.8'
-			}
-		}
-	};
+        name: path.basename(__filename).slice('.')[0],
+        description: 'Geolocate a host (freegeoip.net)',
+        options: {
+            target: {
+            type: 'ip',
+            description: 'Host to explore',
+            defaultValue: '8.8.8.8'
+            }
+        }
+    };
 
 
 // Public stuff

@@ -24,10 +24,10 @@ var path = require('path'),
     moira = require('moira'),
 
     HELP = {
-		name: path.basename(__filename).slice('.')[0],
-		description: 'Get your external IP address (icanhazip.com)',
-		options: null
-	};
+        name: path.basename(__filename).slice('.')[0],
+        description: 'Get your external IP address (icanhazip.com)',
+        options: null
+    };
 
 
 // Public stuff
