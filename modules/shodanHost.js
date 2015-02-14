@@ -20,8 +20,6 @@
 
 // Private stuff
 
-// A valid API key is not needed here
-// http://www.shodanhq.com/browse
 var ShodanClient = require('shodan-client'),
 
     HELP = {
