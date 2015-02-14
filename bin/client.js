@@ -111,7 +111,7 @@ function exitFine() {
 function runCommand(comm, rl) {
     var splitComm = comm.split(' '),
         commCases = {
-            // Just in case a enter push
+            // To avoid command not found on empty string
             '': function () {
                 rl.prompt();
             },
@@ -133,7 +133,7 @@ function runCommand(comm, rl) {
                 }
                 rl.prompt();
             },
-            'setShodanKey': function () {
+            'shodanKey': function () {
                 rl.question(
                     '* Enter your key: ',
                     function (answer) {
@@ -142,6 +142,8 @@ function runCommand(comm, rl) {
                             assault.setShodanKey(answer);
                             printer.infoHigh('Using SHODAN key: ');
                             printer.highlight(answer + '\n');
+                        } else {
+                            printer.error('Empty key');
                         }
                         rl.prompt();
                     }
@@ -209,7 +211,7 @@ lodash.each(modulesInfo, function (v, k) {
     modulesList.push(k);
 });
 // and manually adding client modules
-modulesList = modulesList.concat(['help', 'quit', 'exit', 'setShodanKey']);
+modulesList = modulesList.concat(['help', 'quit', 'exit', 'shodanKey']);
 
 // Welcome info is printed
 printer.bold('\n\tWelcome to AssaultJS\n');

@@ -61,7 +61,7 @@ module.exports.parseOptions = function (passedOptions, expectedOptions, callback
                 return;
             }
             // The default value is always used if the option is not provided
-            finalValue = passedValue || expectedOption.defaultValue;
+            finalValue = passedValue || expectedOption.defaultValue;
 
             // Trying to get the final value for this parameter
             try {

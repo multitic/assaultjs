@@ -25,12 +25,18 @@
 var ShodanClient = require('shodan-client'),
 
     HELP = {
-        description : 'Quick access to popular SHODAN related queries',
+        description : 'Look if the target is indexed by SHODAN computer search engine',
         options: {
-            tag: {
-                type: 'allValid',
-                description: 'Specific tag to search about. Use "all" to avoid filtering',
-                defaultValue : 'voip'
+            // TODO: Automatically included, maybe we need to deacoplate
+//            key: {
+//                type: 'allValid',
+//                description: 'Your SHODAN API key',
+//                defaultValue: null
+//            },
+            target: {
+                type: 'ip',
+                description: 'Host to explore',
+                defaultValue: '8.8.8.8'
             },
             timeout : {
                 type: 'positiveInt',
@@ -46,14 +52,21 @@ var ShodanClient = require('shodan-client'),
 module.exports.help = HELP;
 
 module.exports.run = function (options, callback) {
-    var reqOptions  = {
-        timeout: options.timeout
-    },
-    shodanClient = new ShodanClient(reqOptions);
+    var reqOptions = {
+            ip: options.target,
+            timeout: parseInt(options.timeout)
+        },
+        shodanClient;
 
-    if (options.tag === 'all') {
-        shodanClient.popular(callback);
+    if (options.key) {
+        shodanClient = new ShodanClient({ key: options.key });
+
+        shodanClient.host(reqOptions, callback);
     } else {
-        shodanClient.popularTag(options.tag, callback);
+        callback({
+            message: 'A SHODAN key is needed to run this module ' +
+                     '(https://account.shodan.io/register)',
+            error: null
+        });
     }
 };

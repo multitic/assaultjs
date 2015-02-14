@@ -149,8 +149,7 @@ module.exports.nmapTargets = function (value) {
 
 module.exports.nmapPorts = function (value) {
     var split0    = value.split(','),
-        split1    = value.split('-'),
-        allFine   = false;
+        split1    = value.split('-');
 
     if (split0.length > 1) {
         return value;

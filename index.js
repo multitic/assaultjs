@@ -70,12 +70,11 @@ Assault.prototype.runModule = function (moduleName, config, callback) {
                 return;
             }
             if (moduleName.substr(0, 6) === 'shodan') {
-                finalConfig.shodanKey = self.shodanKey;
+                finalConfig.key = self.shodanKey;
             }
             assaultModule.run(finalConfig, callback);
         }
     );
 };
-
 
 module.exports = Assault;
