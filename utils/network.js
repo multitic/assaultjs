@@ -23,6 +23,15 @@
 var Netmask = require('netmask').Netmask,
     lodash = require('lodash');
 
+// Helpers
+
+function addZeros (block) {
+    if (block === '') {
+        return '0';
+    } else {
+        return block;
+    }
+}
 
 // Public stuff
 
@@ -65,7 +74,7 @@ module.exports.normalize6 = function(add6) {
     normalizedAdd = [];
     splittedAdd = add6.split(':');
 
-    for (var i = 0; i < splittedAdd.length; i++) {
+    for (var i = 0; i < splittedAdd.length; i += 1) {
         i = splittedAdd[i];
         normalizedAdd.push(addZeros(i));
     }

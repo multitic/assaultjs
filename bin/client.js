@@ -164,7 +164,7 @@ function createPrompt() {
 }
 
 
-// Creating the AssaultJS object
+// Creating the Assault object
 assault = new Assault({});
 
 // Generating the modules list
