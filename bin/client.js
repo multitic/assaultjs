@@ -30,7 +30,7 @@ var async = require('async'),
     modulesInfo = {},
     modulesList = [],
     exitNext = false,
-    assault;
+    commCases, assault, rl;
 
 
 function completer(line) {
@@ -109,50 +109,11 @@ function exitFine() {
 }
 
 function runCommand(comm, rl) {
-    var splitComm = comm.split(' '),
-        commCases = {
-            // To avoid command not found on empty string
-            '': function () {
-                rl.prompt();
-            },
-            'quit': function () {
-                exitFine();
-            },
-            'exit': function () {
-                exitFine();
-            },
-            'help': function () {
-                if (splitComm.length > 1 && modulesList.indexOf(splitComm[1]) !== -1) {
-                    if (splitComm[1] === 'help') {
-                        printer.error('Really? xD');
-                    } else {
-                        printer.json(modulesInfo[splitComm[1]].help);
-                    }
-                } else {
-                    printer.error('ERROR: Module not found');
-                }
-                rl.prompt();
-            },
-            'shodanKey': function () {
-                rl.question(
-                    '* Enter your key: ',
-                    function (answer) {
-                        if (answer) {
-                            answer = answer.trim();
-                            assault.setShodanKey(answer);
-                            printer.infoHigh('Using SHODAN key: ');
-                            printer.highlight(answer + '\n');
-                        } else {
-                            printer.error('Empty key');
-                        }
-                        rl.prompt();
-                    }
-                );
-            }
-        };
+    // Deleting not needed params
+    var splitComm = comm.split(' ');
 
     if (commCases[splitComm[0]]) {
-        commCases[splitComm[0]]();
+        commCases[splitComm[0]](splitComm);
     } else {
         if (modulesList.indexOf(comm) !== -1) {
             runModule(comm, rl);
@@ -198,31 +159,75 @@ function createPrompt() {
             exitFine();
         }
     });
+
+    return rl;
 }
 
 
 // Creating the AssaultJS object
 assault = new Assault({});
 
+// Generating the modules list
 modulesInfo = assault.getModulesInfo();
-
-// Generating modules list
 lodash.each(modulesInfo, function (v, k) {
     modulesList.push(k);
 });
-// and manually adding client modules
-modulesList = modulesList.concat(['help', 'quit', 'exit', 'shodanKey']);
+
+// Client commands not included as modules
+commCases = {
+    // To avoid command not found on empty string
+    '': function () {
+        rl.prompt();
+    },
+    'quit': function () {
+        exitFine();
+    },
+    'exit': function () {
+        exitFine();
+    },
+    'help': function (commArrr) {
+        if (commArrr.length > 1 && modulesList.indexOf(commArrr[1]) !== -1) {
+            if (commArrr[1] === 'help') {
+                printer.error('Really? xD');
+            } else {
+                printer.json(modulesInfo[commArrr[1]].help);
+            }
+        } else {
+            printer.error('ERROR: Module not found');
+        }
+        rl.prompt();
+    },
+    'shodanKey': function () {
+        rl.question(
+            '* Enter your key: ',
+            function (answer) {
+                if (answer) {
+                    answer = answer.trim();
+                    assault.setShodanKey(answer);
+                    printer.infoHigh('Using SHODAN key: ');
+                    printer.highlight(answer + '\n');
+                } else {
+                    printer.error('Empty key');
+                }
+                rl.prompt();
+            }
+        );
+    }
+};
+
+// Adding client modules (avoiding the empty string)
+modulesList = modulesList.concat(Object.keys(commCases).splice(1));
 
 // Welcome info is printed
 printer.bold('\n\tWelcome to AssaultJS\n');
 printer.info('Use the Tab key to see available commands and type "help [command]" get more info');
 printer.info('If you have doubts just run it and use the default options :)\n');
 
-// The prompt is started
-createPrompt();
-
 // Just in case ;)
 //process.on('uncaughtException', function (err) {
 //    printer.error('"uncaughtException" found:');
 //    printer.error(err);
 //});
+
+// The prompt is started
+rl = createPrompt();
