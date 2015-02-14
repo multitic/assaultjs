@@ -20,11 +20,9 @@
 
 // Private stuff
 
-var path = require('path'),
-    traceroute = require('traceroute'),
+var traceroute = require('traceroute'),
 
     HELP = {
-        name: path.basename(__filename).slice('.')[0],
         description : 'Display the route of your packages',
         options: {
             target: {

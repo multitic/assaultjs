@@ -20,11 +20,9 @@
 
 // Private stuff
 
-var path = require('path'),
-    libnmap = require('node-libnmap'),
+var libnmap = require('node-libnmap'),
 
     HELP = {
-        name: path.basename(__filename).slice('.')[0],
         description: 'Geolocate a host (freegeoip.net)',
         options: {
             targets : {

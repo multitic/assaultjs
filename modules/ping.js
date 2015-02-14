@@ -20,11 +20,9 @@
 
 // Private stuff
 
-var path = require('path'),
-    ping = require('ping'),
+var ping = require('ping'),
 
     HELP = {
-        name: path.basename(__filename).slice('.')[0],
         description: 'Ping protocol client',
         options: {
             target: {

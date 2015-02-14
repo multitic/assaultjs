@@ -40,6 +40,14 @@ module.exports.randomIp = function () {
     return array.join('.');
 };
 
+module.exports.randomPort = function () {
+    return lodash.random(1025, 65535);
+};
+
+module.exports.isReservedIp = function (address) {
+    return /(^127\.)|(^192\.168\.)|(^10\.)|(^172\.1[6-9]\.)|(^172\.2[0-9]\.)|(^172\.3[0-1]\.)|(^::1$)/.test(address);
+};
+
 module.exports.randomIp6 = function () {
     var array = [],
         i;
@@ -51,10 +59,23 @@ module.exports.randomIp6 = function () {
     return array.join(':');
 };
 
-module.exports.randomPort = function () {
-    return lodash.random(1025, 65535);
+module.exports.normalize6 = function(add6) {
+    var normalizedAdd, splittedAdd;
+
+    normalizedAdd = [];
+    splittedAdd = add6.split(':');
+
+    for (var i = 0; i < splittedAdd.length; i++) {
+        i = splittedAdd[i];
+        normalizedAdd.push(addZeros(i));
+    }
+
+    return normalizedAdd.join(':');
 };
 
-module.exports.isReservedIp = function (address) {
-    return /(^127\.)|(^192\.168\.)|(^10\.)|(^172\.1[6-9]\.)|(^172\.2[0-9]\.)|(^172\.3[0-1]\.)|(^::1$)/.test(address);
+
+module.exports.customHttpAgent = function () {
+    return 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_0)' +
+           'AppleWebKit/537.36 (KHTML, like Gecko) Chrome/' +
+           '31.0.1650.63 Safari/537.36';
 };

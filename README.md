@@ -1,4 +1,4 @@
-# assaultjs-framework
+# Assaultjs
 
 Pentesting and exploiting stuff in Node. Please visit the page of the project to know more about it.
 - **Site**: https://assaultjs.github.io/

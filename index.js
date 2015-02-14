@@ -44,7 +44,8 @@ Assault.prototype.setShodanKey = function (value) {
 };
 
 Assault.prototype.runModule = function (moduleName, config, callback) {
-    var assaultModule;
+    var self = this,
+        assaultModule;
 
     if (!this.modulesInfo[moduleName]) {
         callback({
@@ -69,7 +70,7 @@ Assault.prototype.runModule = function (moduleName, config, callback) {
                 return;
             }
             if (moduleName.substr(0, 6) === 'shodan') {
-                finalConfig.shodanKey = this.shodanKey;
+                finalConfig.shodanKey = self.shodanKey;
             }
             assaultModule.run(finalConfig, callback);
         }

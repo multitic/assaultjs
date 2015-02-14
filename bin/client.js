@@ -63,7 +63,6 @@ function runModule(moduleName, rl) {
         rl.prompt();
     }
 
-    printer.bold('\n' + moduleInfo.name + ': ' + moduleInfo.description + '\n');
     // Asking for the parameters (if any)
     if (moduleInfo.options) {
         async.eachSeries(
@@ -171,7 +170,7 @@ function runCommand(comm, rl) {
 function createPrompt() {
     var rl = readline.createInterface(process.stdin, process.stdout, completer);
 
-    rl.setPrompt('assaultjs> ');
+    rl.setPrompt('Assaultjs> ');
     rl.prompt();
 
     // On new line

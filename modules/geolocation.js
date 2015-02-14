@@ -20,11 +20,9 @@
 
 // Private stuff
 
-var path = require('path'),
-    geoip = require('node-freegeoip'),
+var geoip = require('node-freegeoip'),
 
     HELP = {
-        name: path.basename(__filename).slice('.')[0],
         description: 'Geolocate a host (freegeoip.net)',
         options: {
             target: {

@@ -79,6 +79,10 @@ function isCidrMask(value, version) {
 
 // Public stuff
 
+module.exports.getTlsTypes = function () {
+    return TLS_TYPES;
+};
+
 // From here:
 // - Receive a string
 // - Return the final params needed by the module

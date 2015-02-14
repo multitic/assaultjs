@@ -20,11 +20,9 @@
 
 // Private stuff
 
-var path = require('path'),
-    scanner = require('node-wifiscanner'),
+var scanner = require('node-wifiscanner'),
 
     HELP = {
-        name: path.basename(__filename).slice('.')[0],
         description: 'Wifi access point scanner',
         options: null
     };
