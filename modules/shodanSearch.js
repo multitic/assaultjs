@@ -25,12 +25,17 @@
 var ShodanClient = require('shodan-client'),
 
     HELP = {
-        description: 'Quick access to popular SHODAN related queries',
+        description: 'Find potential targets in SHODAN computer search engine',
         options: {
-            tag: {
+            query: {
                 type: 'allValid',
-                description: 'Specific tag to search about. Use "all" to avoid filtering',
-                defaultValue : 'voip'
+                description: 'Query to search about, could include port, country, product, etc.',
+                defaultValue: 'openssh'
+            },
+            pages: {
+                type: 'positiveInt',
+                description: 'Number of pages (of results) to return (only 1 allowed with free accounts)',
+                defaultValue: 1
             },
             timeout : {
                 type: 'positiveInt',
@@ -46,14 +51,25 @@ var ShodanClient = require('shodan-client'),
 module.exports.help = HELP;
 
 module.exports.run = function (options, callback) {
-    var reqOptions  = {
-        timeout: options.timeout
-    },
-    shodanClient = new ShodanClient(reqOptions);
+    var reqOptions = {
+            query: options.query,
+//            facets: 'port:100',
+            page: parseInt(options.pages)
+        },
+        shodanClient;
 
-    if (options.tag === 'all') {
-        shodanClient.popular(callback);
+    if (options.key) {
+        shodanClient = new ShodanClient({
+            key: options.key,
+            timeout: parseInt(options.timeout)
+        });
+
+        shodanClient.search(reqOptions, callback);
     } else {
-        shodanClient.popularTag(options.tag, callback);
+        callback({
+            message: 'A SHODAN key is needed to run this module ' +
+                     '(https://account.shodan.io/register)',
+            error: null
+        });
     }
 };

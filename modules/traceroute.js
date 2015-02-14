@@ -23,7 +23,7 @@
 var traceroute = require('traceroute'),
 
     HELP = {
-        description : 'Display the route of your packages',
+        description: 'Display the route of your packages',
         options: {
             target: {
                 type: 'ip',

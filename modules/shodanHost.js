@@ -25,7 +25,7 @@
 var ShodanClient = require('shodan-client'),
 
     HELP = {
-        description : 'Look if the target is indexed by SHODAN computer search engine',
+        description: 'Look if the target is indexed by SHODAN computer search engine',
         options: {
             // TODO: Automatically included, maybe we need to deacoplate
 //            key: {
@@ -52,14 +52,14 @@ var ShodanClient = require('shodan-client'),
 module.exports.help = HELP;
 
 module.exports.run = function (options, callback) {
-    var reqOptions = {
-            ip: options.target,
-            timeout: parseInt(options.timeout)
-        },
+    var reqOptions = { ip: options.target },
         shodanClient;
 
     if (options.key) {
-        shodanClient = new ShodanClient({ key: options.key });
+        shodanClient = new ShodanClient({
+            key: options.key,
+            timeout: parseInt(options.timeout)
+        });
 
         shodanClient.host(reqOptions, callback);
     } else {
